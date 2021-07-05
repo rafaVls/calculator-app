@@ -31,34 +31,160 @@ html, body {
 }
 
 body {
-    padding: 20px;
+    /* padding: 20px; */
     background-color: var(--bg-main);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 30px;
 }
 
 footer {
     color: var(--text-light);
 }
 
+h1 {
+    font-size: 2rem;
+}
+
+legend {
+    font-size: 1rem;
+}
+
+label {
+    font-size: .8rem;
+}
+
 button {
-    font-size: 3.2rem;
+    padding: 5px;
+    min-height: 50px;
+    font-size: 2.4rem;
+    color: var(--text-dark);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 5px 0 var(--bg-key-3-shadow);
 }
 
 .calculator-container {
+    padding: 5.35vw;
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    gap: 10px;
+
     color: var(--text-light);
     background-color: var(--bg-main);
 }
 
-.display {
+/* ==========[ HEADER SECTION ]========== */
+.theme-switch {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
+    border: none;
+}
+
+.theme-switch > legend {
+    float: left;
+    align-self: flex-end;
+    margin-right: 10px;
+    margin-bottom: 6px;
+}
+
+.theme-switch input[type="radio"] {
+    display: none;
+}
+
+.radio-labels {
+    width: 40px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.toggle-container {
+    width: 35px;
+    height: 12px;
+    margin: 2px auto 0;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    border-radius: 50px;
+    background-color: var(--bg-keypad);
+}
+
+.toggle-circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--bg-key-2);
+}
+
+/* ==========[ SCREEN SECTION ]========== */
+.screen {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    min-height: 50px;
+    padding: 10px;
+    font-size: 2rem;
+    border-radius: 5px;
     color: var(--text-light);
     background-color: var(--bg-screen);
 }
 
-.buttons-container {
+/* ==========[ KEYPAD SECTION ]========== */
+.keypad {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 3vw;
+    row-gap: 5vw;
+
+    border-radius: 5px;
     background-color: var(--bg-keypad);
 }
 
+.big-button {
+    grid-column: span 2;
+}
+
+.accent-button {
+    color: var(--text-light);
+    background-color: var(--bg-key-1);
+    box-shadow: 0 5px 0 var(--bg-key-1-shadow);
+}
+
+.equals-button {
+    color: var(--text-light);
+    background-color: var(--bg-key-2);
+    box-shadow: 0 5px 0 var(--bg-key-2-shadow);
+}
+
+/* Tablets */
 @media only screen and (min-width: 600px) {
-    body {
-        padding: 40px 25%;
+    .calculator-container {
+        padding: 20px 25%;
+    }
+
+    .keypad {
+        gap: 2vw;
+    }
+}
+
+/* Laptops & up */
+@media only screen and (min-width: 992px) {
+    .calculator-container {
+        padding: 40px 35%;
+    }
+
+    .keypad {
+        column-gap: 1vw;
+        row-gap: 1.25vw;
+        padding: 25px;
     }
 }

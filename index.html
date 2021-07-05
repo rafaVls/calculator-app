@@ -13,32 +13,36 @@
         <header>
             <h1>calc</h1>
             <!-- Theme toggle -->
-            <fieldset>
-                <legend>Theme</legend>
+            <fieldset class="theme-switch">
+                <legend>THEME</legend>
                 <div>
-                    <input type="radio" name="" id="">
-                    <label for="">1</label>
-                    <input type="radio" name="" id="">
-                    <label for="">2</label>
-                    <input type="radio" name="" id="">
-                    <label for="">3</label>
+                    <div class="radio-labels">
+                        <input type="radio" name="theme-1" id="theme-1">
+                        <label for="theme-1">1</label>
+                        <input type="radio" name="theme-2" id="theme-2">
+                        <label for="theme-2">2</label>
+                        <input type="radio" name="theme-3" id="theme-3">
+                        <label for="theme-3">3</label>
+                    </div>
                     <!-- The actual slide circle thing -->
-                    <div></div>
+                    <div class="toggle-container">
+                        <div class="toggle-circle"></div>
+                    </div>
                 </div>
             </fieldset>
         </header>
 
-        <!-- Display -->
-        <div class="display" id="display">
+        <!-- Screen -->
+        <div class="screen" id="screen">
             <span>399,981</span>
         </div>
 
         <!-- Buttons -->
-        <div class="buttons-container" id="buttons-container">
+        <div class="keypad" id="keypad">
             <button>7</button>
             <button>8</button>
             <button>9</button>
-            <button>DEL</button>
+            <button class="accent-button">DEL</button>
             <button>4</button>
             <button>5</button>
             <button>6</button>
@@ -51,8 +55,8 @@
             <button>0</button>
             <button>/</button>
             <button>x</button>
-            <button>RESET</button>
-            <button>=</button>
+            <button class="big-button accent-button">RESET</button>
+            <button class="big-button equals-button">=</button>
         </div>
     </div>
 
