@@ -32,10 +32,29 @@ html, body {
 
 body {
     padding: 20px;
+    background-color: var(--bg-main);
+}
+
+footer {
+    color: var(--text-light);
 }
 
 button {
     font-size: 3.2rem;
+}
+
+.calculator-container {
+    color: var(--text-light);
+    background-color: var(--bg-main);
+}
+
+.display {
+    color: var(--text-light);
+    background-color: var(--bg-screen);
+}
+
+.buttons-container {
+    background-color: var(--bg-keypad);
 }
 
 @media only screen and (min-width: 600px) {
