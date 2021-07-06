@@ -31,7 +31,6 @@ html, body {
 }
 
 body {
-    /* padding: 20px; */
     background-color: var(--bg-main);
 }
 
@@ -43,6 +42,9 @@ header {
 }
 
 footer {
+    margin-top: 20px;
+    font-size: 1.6rem;
+    text-align: center;
     color: var(--text-light);
 }
 
