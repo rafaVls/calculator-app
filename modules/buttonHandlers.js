@@ -33,6 +33,7 @@ class OperatorButtonHandler {
 
         switch (this.operatorText) {
             case ".":
+                this.dotHandler(screenText);
                 break;
             case "+":
                 break;
@@ -46,6 +47,12 @@ class OperatorButtonHandler {
                 break;
             default:
                 break;
+        }
+    }
+
+    dotHandler(screenText) {
+        if (!screenText.includes(".")) {
+            screenTextElement.textContent += ".";
         }
     }
 }
