@@ -13,6 +13,9 @@ deleteButtonElement.addEventListener("click", handlers.deleteButtonHandler);
 numberButtonElements.forEach(numberButton => {
     numberButton.addEventListener("click", () => handlers.numberButtonHandler(numberButton));
 });
+operatorButtonElements.forEach(operatorButton => {
+    operatorButton.addEventListener("click", () => handlers.operatorButtonHandler(operatorButton));
+});
 
 document.addEventListener("keydown", (e) => {
     const numerics = /^[0-9]/;

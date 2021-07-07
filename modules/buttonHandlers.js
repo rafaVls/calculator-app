@@ -22,4 +22,23 @@ function resetButtonHandler() {
     screenTextElement.textContent = "0";
 }
 
-export { numberButtonHandler, deleteButtonHandler, resetButtonHandler };
+function operatorButtonHandler(operatorButton) {
+    switch (operatorButton.textContent) {
+        case ".":
+            break;
+        case "+":
+            break;
+        case "-":
+            break;
+        case "x":
+            break;
+        case "/":
+            break;
+        case "=":
+            break;
+        default:
+            break;
+    }
+}
+
+export { numberButtonHandler, deleteButtonHandler, resetButtonHandler, operatorButtonHandler };
