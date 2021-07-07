@@ -14,7 +14,8 @@ numberButtonElements.forEach(numberButton => {
     numberButton.addEventListener("click", () => handlers.numberButtonHandler(numberButton));
 });
 operatorButtonElements.forEach(operatorButton => {
-    operatorButton.addEventListener("click", () => handlers.operatorButtonHandler(operatorButton));
+    const operatorHandler = new handlers.OperatorButtonHandler(operatorButton);
+    operatorButton.addEventListener("click", () => operatorHandler.handleOperator());
 });
 
 document.addEventListener("keydown", (e) => {

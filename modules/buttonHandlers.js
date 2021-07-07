@@ -22,23 +22,32 @@ function resetButtonHandler() {
     screenTextElement.textContent = "0";
 }
 
-function operatorButtonHandler(operatorButton) {
-    switch (operatorButton.textContent) {
-        case ".":
-            break;
-        case "+":
-            break;
-        case "-":
-            break;
-        case "x":
-            break;
-        case "/":
-            break;
-        case "=":
-            break;
-        default:
-            break;
+class OperatorButtonHandler {
+    constructor(operatorButton) {
+        this.operatorButton = operatorButton;
+        this.operatorText = operatorButton.textContent;
+    }
+
+    handleOperator() {
+        const screenText = screenTextElement.textContent;
+
+        switch (this.operatorText) {
+            case ".":
+                break;
+            case "+":
+                break;
+            case "-":
+                break;
+            case "x":
+                break;
+            case "/":
+                break;
+            case "=":
+                break;
+            default:
+                break;
+        }
     }
 }
 
-export { numberButtonHandler, deleteButtonHandler, resetButtonHandler, operatorButtonHandler };
+export { numberButtonHandler, deleteButtonHandler, resetButtonHandler, OperatorButtonHandler };
