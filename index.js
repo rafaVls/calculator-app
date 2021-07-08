@@ -21,13 +21,37 @@ operatorButtonElements.forEach(operatorButton => {
 document.addEventListener("keydown", (e) => {
     const numerics = /^[0-9]/;
 
-    // Could this be refactored into a switch statement with
-    // the regex check?
     if (e.key.match(numerics)) {
         numberButtonElements.find(numberButton => numberButton.textContent === e.key).click();
-    } else if (e.key === "Backspace") {
-        deleteButtonElement.click();
-    } else if (e.key === "Escape") {
-        resetButtonElement.click();
+    } else {
+        switch (e.key) {
+            case "Backspace":
+                deleteButtonElement.click();
+                break;
+            case "Escape":
+                resetButtonElement.click();
+            case ".":
+                operatorButtonElements.find(operatorButton => operatorButton.textContent === ".").click();
+                break;
+            case "+":
+                operatorButtonElements.find(operatorButton => operatorButton.textContent === "+").click();
+                break;
+            case "-":
+                operatorButtonElements.find(operatorButton => operatorButton.textContent === "-").click();
+                break;
+            case "x":
+            case "*":
+                operatorButtonElements.find(operatorButton => operatorButton.textContent === "x").click();
+                break;
+            case "/":
+                operatorButtonElements.find(operatorButton => operatorButton.textContent === "/").click();
+                break;
+            case "=":
+            case "Enter":
+                operatorButtonElements.find(operatorButton => operatorButton.textContent === "=").click();
+                break;
+            default:
+                break;
+        }
     }
 })
