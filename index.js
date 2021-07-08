@@ -31,6 +31,7 @@ document.addEventListener("keydown", (e) => {
                 break;
             case "Escape":
                 resetButtonElement.click();
+                break;
             case ".":
                 operatorButtonElements.find(operatorButton => operatorButton.textContent === ".").click();
                 break;
