@@ -1,12 +1,12 @@
 const screenTextElement = document.getElementById("screen-text");
 
-class OperatorButtonHandler {
+class ButtonClickHandler {
     constructor() {
         this.value = 0;
         this.operatorPressed = null;
     }
 
-    numberButtonHandler(numberButton) {
+    numberHandler(numberButton) {
         if (screenTextElement.textContent === "0") {
             screenTextElement.textContent = numberButton.textContent;
         } else {
@@ -14,7 +14,7 @@ class OperatorButtonHandler {
         }
     }
 
-    deleteButtonHandler() {
+    deleteHandler() {
         const screenText = screenTextElement.textContent;
 
         if (screenText !== "0" && screenText.length !== 1) {
@@ -24,13 +24,13 @@ class OperatorButtonHandler {
         }
     }
 
-    resetButtonHandler() {
+    resetHandler() {
         this.value = 0;
         this.operatorPressed = null;
         screenTextElement.textContent = "0";
     }
 
-    handleOperator(operatorButton) {
+    operatorsHandler(operatorButton) {
         const screenText = screenTextElement.textContent;
         const operatorText = operatorButton.textContent;
 
@@ -39,7 +39,7 @@ class OperatorButtonHandler {
                 this.dotHandler(screenText);
                 break;
             case "+":
-                this.sumHandler(screenText);
+                this.plusHandler(screenText);
                 break;
             case "-":
                 break;
@@ -60,7 +60,7 @@ class OperatorButtonHandler {
         }
     }
 
-    sumHandler(screenText) {
+    plusHandler(screenText) {
         if (screenText !== "0") {
             if (this.operatorPressed) {
                 this.value += +screenText;
@@ -74,4 +74,4 @@ class OperatorButtonHandler {
     }
 }
 
-export { OperatorButtonHandler };
+export { ButtonClickHandler };

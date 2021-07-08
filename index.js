@@ -1,7 +1,8 @@
-import * as handlers from "./modules/buttonHandlers.js";
+import { ButtonClickHandler } from "./modules/buttonHandlers.js";
 import { checkIfNaN } from "./modules/helpers.js";
 
-const operatorHandler = new handlers.OperatorButtonHandler();
+const clickHandler = new ButtonClickHandler();
+
 const screenTextElement = document.getElementById("screen-text");
 const buttonElements = Array.from(document.getElementById("keypad").children);
 const deleteButtonElement = buttonElements.find(button => button.textContent === "DEL");
@@ -9,13 +10,13 @@ const resetButtonElement = buttonElements.find(button => button.textContent === 
 const numberButtonElements = buttonElements.filter(button => !checkIfNaN(+button.textContent));
 const operatorButtonElements = buttonElements.filter(button => checkIfNaN(+button.textContent) && button.textContent.length === 1);
 
-resetButtonElement.addEventListener("click", () => operatorHandler.resetButtonHandler());
-deleteButtonElement.addEventListener("click", () => operatorHandler.deleteButtonHandler());
+resetButtonElement.addEventListener("click", () => clickHandler.resetHandler());
+deleteButtonElement.addEventListener("click", () => clickHandler.deleteHandler());
 numberButtonElements.forEach(numberButton => {
-    numberButton.addEventListener("click", () => operatorHandler.numberButtonHandler(numberButton));
+    numberButton.addEventListener("click", () => clickHandler.numberHandler(numberButton));
 });
 operatorButtonElements.forEach(operatorButton => {
-    operatorButton.addEventListener("click", () => operatorHandler.handleOperator(operatorButton));
+    operatorButton.addEventListener("click", () => clickHandler.operatorsHandler(operatorButton));
 });
 
 document.addEventListener("keydown", (e) => {
