@@ -37,6 +37,7 @@ class OperatorButtonHandler {
                 this.dotHandler(screenText);
                 break;
             case "+":
+                this.sumHandler(screenText);
                 break;
             case "-":
                 break;
@@ -56,6 +57,20 @@ class OperatorButtonHandler {
         if (!screenText.includes(".")) {
             screenTextElement.textContent += ".";
         }
+    }
+
+    sumHandler(screenText) {
+        if (screenText !== "0") {
+            if (this.operatorPressed) {
+                this.value += +screenText;
+                this.operatorPressed = false;
+                console.log(this.value);
+            } else {
+                this.value = +screenText;
+                this.operatorPressed = true;
+            }
+        }
+        screenTextElement.textContent = "0";
     }
 }
 
