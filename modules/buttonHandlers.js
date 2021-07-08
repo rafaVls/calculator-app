@@ -23,15 +23,16 @@ function resetButtonHandler() {
 }
 
 class OperatorButtonHandler {
-    constructor(operatorButton) {
-        this.operatorButton = operatorButton;
-        this.operatorText = operatorButton.textContent;
+    constructor() {
+        this.value = 0;
+        this.operatorPressed = false;
     }
 
-    handleOperator() {
+    handleOperator(operatorButton) {
         const screenText = screenTextElement.textContent;
+        const operatorText = operatorButton.textContent;
 
-        switch (this.operatorText) {
+        switch (operatorText) {
             case ".":
                 this.dotHandler(screenText);
                 break;
@@ -44,6 +45,7 @@ class OperatorButtonHandler {
             case "/":
                 break;
             case "=":
+                console.log(this.value)
                 break;
             default:
                 break;
