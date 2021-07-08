@@ -9,10 +9,10 @@ const resetButtonElement = buttonElements.find(button => button.textContent === 
 const numberButtonElements = buttonElements.filter(button => !checkIfNaN(+button.textContent));
 const operatorButtonElements = buttonElements.filter(button => checkIfNaN(+button.textContent) && button.textContent.length === 1);
 
-resetButtonElement.addEventListener("click", handlers.resetButtonHandler);
-deleteButtonElement.addEventListener("click", handlers.deleteButtonHandler);
+resetButtonElement.addEventListener("click", () => operatorHandler.resetButtonHandler());
+deleteButtonElement.addEventListener("click", () => operatorHandler.deleteButtonHandler());
 numberButtonElements.forEach(numberButton => {
-    numberButton.addEventListener("click", () => handlers.numberButtonHandler(numberButton));
+    numberButton.addEventListener("click", () => operatorHandler.numberButtonHandler(numberButton));
 });
 operatorButtonElements.forEach(operatorButton => {
     operatorButton.addEventListener("click", () => operatorHandler.handleOperator(operatorButton));
