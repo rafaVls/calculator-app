@@ -8,10 +8,12 @@ class ButtonClickHandler {
     }
 
     numberHandler(numberButton) {
+        const buttonText = numberButton.textContent;
+
         if (bigTextElement.textContent === "0") {
-            bigTextElement.textContent = numberButton.textContent;
+            bigTextElement.textContent = buttonText;
         } else {
-            bigTextElement.textContent += numberButton.textContent;
+            bigTextElement.textContent += buttonText;
         }
     }
 
