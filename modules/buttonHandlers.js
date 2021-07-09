@@ -68,6 +68,7 @@ class ButtonClickHandler {
     }
 
     dotHandler(bigText) {
+        this.afterEquals && this.resetHandler();
         if (!bigText.includes(".")) {
             bigTextElement.textContent += ".";
         }
