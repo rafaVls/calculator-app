@@ -4,13 +4,18 @@ const smallTextElement = document.getElementById("small-text");
 class ButtonClickHandler {
     constructor() {
         this.value = 0;
+        this.afterEquals = false;
         this.operatorPressed = null;
     }
 
     numberHandler(numberButton) {
         const buttonText = numberButton.textContent;
 
-        if (bigTextElement.textContent === "0") {
+        // If the "equals" button has been pressed, this.value
+        // will be displayed to bigTextElement, and we need to 
+        // reset calculator before starting a new operation
+        if (bigTextElement.textContent === "0" || this.afterEquals) {
+            this.afterEquals && this.resetHandler();
             bigTextElement.textContent = buttonText;
         } else {
             bigTextElement.textContent += buttonText;
@@ -29,6 +34,7 @@ class ButtonClickHandler {
 
     resetHandler() {
         this.value = 0;
+        this.afterEquals = false;
         this.operatorPressed = null;
         bigTextElement.textContent = "0";
         smallTextElement.textContent = "";
@@ -52,6 +58,7 @@ class ButtonClickHandler {
             case "/":
                 break;
             case "=":
+                this.equalsHandler();
                 break;
             default:
                 break;
@@ -66,16 +73,28 @@ class ButtonClickHandler {
 
     plusHandler(bigText) {
         if (bigText !== "0") {
-            if (this.operatorPressed) {
+            smallTextElement.textContent += `${bigTextElement.textContent} + `;
+            if (!this.afterEquals) {
                 this.value += +bigText;
-                this.operatorPressed = null;
-            } else {
-                this.value = +bigText;
-                this.operatorPressed = "+";
             }
+            bigTextElement.textContent = "0";
         }
-        bigTextElement.textContent = "0";
-        smallTextElement.textContent += `${this.value} + `;
+        this.afterEquals = false;
+        this.operatorPressed = "+";
+    }
+
+    equalsHandler() {
+        switch (this.operatorPressed) {
+            case "+":
+                this.value += +bigTextElement.textContent;
+                break;
+            default:
+                break;
+        }
+
+        bigTextElement.textContent = this.value;
+        smallTextElement.textContent = "";
+        this.afterEquals = true;
     }
 }
 
