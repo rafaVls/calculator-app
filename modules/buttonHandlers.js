@@ -72,7 +72,7 @@ class ButtonClickHandler {
     }
 
     plusHandler(bigText) {
-        if (bigText !== "0") {
+        if (bigText !== "0" && bigText !== "0.") {
             smallTextElement.textContent += `${bigTextElement.textContent} + `;
             if (!this.afterEquals) {
                 this.value += +bigText;
