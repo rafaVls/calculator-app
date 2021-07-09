@@ -52,6 +52,7 @@ class ButtonClickHandler {
                 this.plusHandler(bigText);
                 break;
             case "-":
+                this.minusHandler(bigText);
                 break;
             case "x":
                 break;
@@ -79,14 +80,35 @@ class ButtonClickHandler {
             }
             bigTextElement.textContent = "0";
         }
+
         this.afterEquals = false;
         this.operatorPressed = "+";
+    }
+
+    minusHandler(bigText) {
+        if (bigText !== "0" && bigText !== "0.") {
+            smallTextElement.textContent += `${bigTextElement.textContent} - `;
+            if (!this.afterEquals) {
+                if (this.operatorPressed === "-") {
+                    this.value -= +bigText;
+                } else {
+                    this.value = +bigText;
+                }
+            }
+            bigTextElement.textContent = "0";
+        }
+
+        this.afterEquals = false;
+        this.operatorPressed = "-";
     }
 
     equalsHandler() {
         switch (this.operatorPressed) {
             case "+":
                 this.value += +bigTextElement.textContent;
+                break;
+            case "-":
+                this.value -= +bigTextElement.textContent;
                 break;
             default:
                 break;
