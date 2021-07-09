@@ -1,4 +1,5 @@
-const screenTextElement = document.getElementById("screen-text");
+const bigTextElement = document.getElementById("big-text");
+const smallTextElement = document.getElementById("small-text");
 
 class ButtonClickHandler {
     constructor() {
@@ -7,39 +8,40 @@ class ButtonClickHandler {
     }
 
     numberHandler(numberButton) {
-        if (screenTextElement.textContent === "0") {
-            screenTextElement.textContent = numberButton.textContent;
+        if (bigTextElement.textContent === "0") {
+            bigTextElement.textContent = numberButton.textContent;
         } else {
-            screenTextElement.textContent += numberButton.textContent;
+            bigTextElement.textContent += numberButton.textContent;
         }
     }
 
     deleteHandler() {
-        const screenText = screenTextElement.textContent;
+        const bigText = bigTextElement.textContent;
 
-        if (screenText !== "0" && screenText.length !== 1) {
-            screenTextElement.textContent = screenText.slice(0, -1);
-        } else if (screenText.length === 1) {
-            screenTextElement.textContent = "0";
+        if (bigText !== "0" && bigText.length !== 1) {
+            bigTextElement.textContent = bigText.slice(0, -1);
+        } else if (bigText.length === 1) {
+            bigTextElement.textContent = "0";
         }
     }
 
     resetHandler() {
         this.value = 0;
         this.operatorPressed = null;
-        screenTextElement.textContent = "0";
+        bigTextElement.textContent = "0";
+        smallTextElement.textContent = "";
     }
 
     operatorsHandler(operatorButton) {
-        const screenText = screenTextElement.textContent;
+        const bigText = bigTextElement.textContent;
         const operatorText = operatorButton.textContent;
 
         switch (operatorText) {
             case ".":
-                this.dotHandler(screenText);
+                this.dotHandler(bigText);
                 break;
             case "+":
-                this.plusHandler(screenText);
+                this.plusHandler(bigText);
                 break;
             case "-":
                 break;
@@ -54,23 +56,24 @@ class ButtonClickHandler {
         }
     }
 
-    dotHandler(screenText) {
-        if (!screenText.includes(".")) {
-            screenTextElement.textContent += ".";
+    dotHandler(bigText) {
+        if (!bigText.includes(".")) {
+            bigTextElement.textContent += ".";
         }
     }
 
-    plusHandler(screenText) {
-        if (screenText !== "0") {
+    plusHandler(bigText) {
+        if (bigText !== "0") {
             if (this.operatorPressed) {
-                this.value += +screenText;
+                this.value += +bigText;
                 this.operatorPressed = null;
             } else {
-                this.value = +screenText;
+                this.value = +bigText;
                 this.operatorPressed = "+";
             }
         }
-        screenTextElement.textContent = "0";
+        bigTextElement.textContent = "0";
+        smallTextElement.textContent += `${this.value} + `;
     }
 }
 

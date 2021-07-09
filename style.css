@@ -128,8 +128,7 @@ button {
 /* ==========[ SCREEN SECTION ]========== */
 .screen {
     display: flex;
-    justify-content: end;
-    align-items: center;
+    justify-content: space-between;
 
     min-height: 50px;
     padding: 10px;
@@ -137,6 +136,14 @@ button {
     border-radius: 5px;
     color: var(--text-light);
     background-color: var(--bg-screen);
+}
+
+.big-text {
+    align-self: center;
+}
+
+.small-text {
+    font-size: 1.2rem;
 }
 
 /* ==========[ KEYPAD SECTION ]========== */

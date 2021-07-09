@@ -2,8 +2,6 @@ import { ButtonClickHandler } from "./modules/buttonHandlers.js";
 import { checkIfNaN } from "./modules/helpers.js";
 
 const clickHandler = new ButtonClickHandler();
-
-const screenTextElement = document.getElementById("screen-text");
 const buttonElements = Array.from(document.getElementById("keypad").children);
 const deleteButtonElement = buttonElements.find(button => button.textContent === "DEL");
 const resetButtonElement = buttonElements.find(button => button.textContent === "RESET");
