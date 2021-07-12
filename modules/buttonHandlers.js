@@ -1,4 +1,4 @@
-import { switchSymbol } from "./helpers.js";
+import { handleSymbol } from "./helpers.js";
 
 const bigTextElement = document.getElementById("big-text");
 const smallTextElement = document.getElementById("small-text");
@@ -76,9 +76,9 @@ class ButtonClickHandler {
         }
     }
 
-    plusHandler(bigText, addSign = false) {
+    plusHandler(bigText, includeSymbol = false) {
         if (bigText !== "0" && bigText !== "0.") {
-            addSign && (smallTextElement.textContent += `${bigTextElement.textContent} + `);
+            includeSymbol && handleSymbol("+", smallTextElement, bigTextElement);
             if (!this.afterEquals || this.operatorPressed) {
                 if (this.operatorPressed === "-") {
                     this.minusHandler(bigText);
@@ -89,15 +89,14 @@ class ButtonClickHandler {
             bigTextElement.textContent = "0";
         }
 
-
         this.afterEquals = false;
         this.operatorPressed = "+";
-        switchSymbol(smallTextElement, this.operatorPressed);
+        handleSymbol(this.operatorPressed, smallTextElement);
     }
 
-    minusHandler(bigText, addSign = false) {
+    minusHandler(bigText, includeSymbol = false) {
         if (bigText !== "0" && bigText !== "0.") {
-            addSign && (smallTextElement.textContent += `${bigTextElement.textContent} - `);
+            includeSymbol && handleSymbol("-", smallTextElement, bigTextElement);
             if (!this.afterEquals || this.operatorPressed) {
                 if (this.operatorPressed === "-") {
                     this.value -= +bigText;
@@ -112,7 +111,7 @@ class ButtonClickHandler {
 
         this.afterEquals = false;
         this.operatorPressed = "-";
-        switchSymbol(smallTextElement, this.operatorPressed);
+        handleSymbol(this.operatorPressed, smallTextElement);
     }
 
     equalsHandler() {

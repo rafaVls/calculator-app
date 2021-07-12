@@ -7,15 +7,23 @@ function checkIfNaN(possibleNaN) {
 }
 
 /**
- * Switches the symbol of current operation displayed on smallTextelement to operationSymbol.
+ * Handles the symbol of current operation displayed on smallTextelement.
+ * @param {string} operationSymbol The symbol string.
  * @param {HTMLElement} smallTextElement The small text part of the screen.
- * @param {string} operationSymbol The symbol string to switch to.
+ * @param {HTMLElement} bigTextElement The big text part of the screen.
  */
-function switchSymbol(smallTextElement, operationSymbol) {
-    if (smallTextElement.textContent !== "" && !smallTextElement.textContent.endsWith(`${operationSymbol} `)) {
-        smallTextElement.textContent = smallTextElement.textContent.slice(0, -2);
-        smallTextElement.textContent += `${operationSymbol} `
+function handleSymbol(operationSymbol, smallTextElement, bigTextElement = null) {
+    const smallText = smallTextElement.textContent;
+
+    if (bigTextElement) {
+        smallTextElement.textContent += `${bigTextElement.textContent} ${operationSymbol} `
+    } else {
+        if (smallText !== "" && !smallText.endsWith(`${operationSymbol} `)) {
+            smallTextElement.textContent = smallText.slice(0, -2);
+            smallTextElement.textContent += `${operationSymbol} `
+        }
     }
+
 }
 
-export { checkIfNaN, switchSymbol };
+export { checkIfNaN, handleSymbol };
