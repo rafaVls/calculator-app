@@ -43,7 +43,7 @@ class ButtonClickHandler {
         smallTextElement.textContent = "";
     }
 
-    operatorsHandler(operatorText) {
+    operatorsHandler(operatorText, includeSymbol = true) {
         const bigText = bigTextElement.textContent;
 
         switch (operatorText) {
@@ -51,10 +51,10 @@ class ButtonClickHandler {
                 this.dotHandler(bigText);
                 break;
             case "+":
-                this.plusHandler(bigText, true);
+                this.operate(bigText, "+", includeSymbol);
                 break;
             case "-":
-                this.minusHandler(bigText, true);
+                this.operate(bigText, "-", includeSymbol);
                 break;
             case "x":
                 break;
@@ -64,6 +64,7 @@ class ButtonClickHandler {
                 this.equalsHandler();
                 break;
             default:
+                this.value = +bigText;
                 break;
         }
         console.log(this.value);
@@ -74,14 +75,6 @@ class ButtonClickHandler {
         if (!bigText.includes(".")) {
             bigTextElement.textContent += ".";
         }
-    }
-
-    plusHandler(bigText, includeSymbol = false) {
-        this.operate(bigText, "+", includeSymbol);
-    }
-
-    minusHandler(bigText, includeSymbol = false) {
-        this.operate(bigText, "-", includeSymbol);
     }
 
     equalsHandler() {
@@ -96,6 +89,7 @@ class ButtonClickHandler {
     operate(bigText, operationSymbol, includeSymbol = false) {
         if (bigText !== "0" && bigText !== "0.") {
             includeSymbol && handleSymbol(operationSymbol, smallTextElement, bigTextElement);
+
             if (!this.afterEquals || this.operatorPressed) {
                 if (this.operatorPressed === operationSymbol) {
                     switch (operationSymbol) {
@@ -109,17 +103,7 @@ class ButtonClickHandler {
                             break;
                     }
                 } else {
-                    switch (this.operatorPressed) {
-                        case "+":
-                            this.plusHandler(bigText);
-                            break;
-                        case "-":
-                            this.minusHandler(bigText);
-                            break;
-                        default:
-                            this.value = +bigText;
-                            break;
-                    }
+                    this.operatorsHandler(this.operatorPressed, false);
                 }
             }
             bigTextElement.textContent = "0";
