@@ -23,7 +23,6 @@ function handleSymbol(operationSymbol, smallTextElement, bigTextElement = null) 
             smallTextElement.textContent += `${operationSymbol} `
         }
     }
-
 }
 
 export { checkIfNaN, handleSymbol };

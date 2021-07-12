@@ -77,41 +77,11 @@ class ButtonClickHandler {
     }
 
     plusHandler(bigText, includeSymbol = false) {
-        if (bigText !== "0" && bigText !== "0.") {
-            includeSymbol && handleSymbol("+", smallTextElement, bigTextElement);
-            if (!this.afterEquals || this.operatorPressed) {
-                if (this.operatorPressed === "-") {
-                    this.minusHandler(bigText);
-                } else {
-                    this.value += +bigText;
-                }
-            }
-            bigTextElement.textContent = "0";
-        }
-
-        this.afterEquals = false;
-        this.operatorPressed = "+";
-        handleSymbol(this.operatorPressed, smallTextElement);
+        this.operate(bigText, "+", includeSymbol);
     }
 
     minusHandler(bigText, includeSymbol = false) {
-        if (bigText !== "0" && bigText !== "0.") {
-            includeSymbol && handleSymbol("-", smallTextElement, bigTextElement);
-            if (!this.afterEquals || this.operatorPressed) {
-                if (this.operatorPressed === "-") {
-                    this.value -= +bigText;
-                } else if (this.operatorPressed === "+") {
-                    this.plusHandler(bigText);
-                } else {
-                    this.value = +bigText;
-                }
-            }
-            bigTextElement.textContent = "0";
-        }
-
-        this.afterEquals = false;
-        this.operatorPressed = "-";
-        handleSymbol(this.operatorPressed, smallTextElement);
+        this.operate(bigText, "-", includeSymbol);
     }
 
     equalsHandler() {
@@ -121,6 +91,43 @@ class ButtonClickHandler {
         smallTextElement.textContent = "";
         this.operatorPressed = null;
         this.afterEquals = true;
+    }
+
+    operate(bigText, operationSymbol, includeSymbol = false) {
+        if (bigText !== "0" && bigText !== "0.") {
+            includeSymbol && handleSymbol(operationSymbol, smallTextElement, bigTextElement);
+            if (!this.afterEquals || this.operatorPressed) {
+                if (this.operatorPressed === operationSymbol) {
+                    switch (operationSymbol) {
+                        case "+":
+                            this.value += +bigText;
+                            break;
+                        case "-":
+                            this.value -= +bigText;
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+                    switch (this.operatorPressed) {
+                        case "+":
+                            this.plusHandler(bigText);
+                            break;
+                        case "-":
+                            this.minusHandler(bigText);
+                            break;
+                        default:
+                            this.value = +bigText;
+                            break;
+                    }
+                }
+            }
+            bigTextElement.textContent = "0";
+        }
+
+        this.afterEquals = false;
+        this.operatorPressed = operationSymbol;
+        handleSymbol(this.operatorPressed, smallTextElement);
     }
 }
 
