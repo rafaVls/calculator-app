@@ -23,6 +23,7 @@ class ButtonClickHandler {
     }
 
     deleteHandler() {
+        this.afterEquals && this.resetHandler();
         const bigText = bigTextElement.textContent;
 
         if (bigText !== "0" && bigText.length !== 1) {
