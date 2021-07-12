@@ -57,8 +57,10 @@ class ButtonClickHandler {
                 this.operate(bigText, "-", includeSymbol);
                 break;
             case "x":
+                this.operate(bigText, "x", includeSymbol);
                 break;
             case "/":
+                this.operate(bigText, "/", includeSymbol);
                 break;
             case "=":
                 this.equalsHandler();
@@ -99,8 +101,15 @@ class ButtonClickHandler {
                         case "-":
                             this.value -= +bigText;
                             break;
-                        default:
+                        // these 2 need fixing, it's a thinker
+                        case "x":
+                            this.value *= +bigText;
                             break;
+                        case "/":
+                            this.value /= +bigText;
+                            break;
+                        default:
+                            throw new SyntaxError("Operation type not recognized");
                     }
                 } else {
                     this.operatorsHandler(this.operatorPressed, false);
