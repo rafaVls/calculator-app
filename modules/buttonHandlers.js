@@ -1,3 +1,5 @@
+import { switchSymbol } from "./helpers.js";
+
 const bigTextElement = document.getElementById("big-text");
 const smallTextElement = document.getElementById("small-text");
 
@@ -87,13 +89,10 @@ class ButtonClickHandler {
             bigTextElement.textContent = "0";
         }
 
-        if (smallTextElement.textContent !== "" && !smallTextElement.textContent.endsWith("+ ")) {
-            smallTextElement.textContent = smallTextElement.textContent.slice(0, -2);
-            smallTextElement.textContent += "+ "
-        }
 
         this.afterEquals = false;
         this.operatorPressed = "+";
+        switchSymbol(smallTextElement, this.operatorPressed);
     }
 
     minusHandler(bigText, addSign = false) {
@@ -111,13 +110,9 @@ class ButtonClickHandler {
             bigTextElement.textContent = "0";
         }
 
-        if (smallTextElement.textContent !== "" && !smallTextElement.textContent.endsWith("- ")) {
-            smallTextElement.textContent = smallTextElement.textContent.slice(0, -2);
-            smallTextElement.textContent += "- "
-        }
-
         this.afterEquals = false;
         this.operatorPressed = "-";
+        switchSymbol(smallTextElement, this.operatorPressed);
     }
 
     equalsHandler() {
