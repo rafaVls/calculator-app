@@ -126,7 +126,7 @@ class ButtonClickHandler {
                 this.plusHandler(bigTextElement.textContent);
                 break;
             case "-":
-                this.plusHandler(bigTextElement.textContent);
+                this.minusHandler(bigTextElement.textContent);
                 break;
             default:
                 break;
