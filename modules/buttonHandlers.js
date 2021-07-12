@@ -41,9 +41,8 @@ class ButtonClickHandler {
         smallTextElement.textContent = "";
     }
 
-    operatorsHandler(operatorButton) {
+    operatorsHandler(operatorText) {
         const bigText = bigTextElement.textContent;
-        const operatorText = operatorButton.textContent;
 
         switch (operatorText) {
             case ".":
@@ -122,16 +121,7 @@ class ButtonClickHandler {
     }
 
     equalsHandler() {
-        switch (this.operatorPressed) {
-            case "+":
-                this.plusHandler(bigTextElement.textContent, true);
-                break;
-            case "-":
-                this.minusHandler(bigTextElement.textContent, true);
-                break;
-            default:
-                break;
-        }
+        this.operatorsHandler(this.operatorPressed)
 
         bigTextElement.textContent = this.value;
         smallTextElement.textContent = "";

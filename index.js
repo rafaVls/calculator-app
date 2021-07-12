@@ -20,7 +20,7 @@ numberButtonElements.forEach(numberButton => {
     numberButton.addEventListener("click", () => clickHandler.numberHandler(numberButton));
 });
 operatorButtonElements.forEach(operatorButton => {
-    operatorButton.addEventListener("click", () => clickHandler.operatorsHandler(operatorButton));
+    operatorButton.addEventListener("click", () => clickHandler.operatorsHandler(operatorButton.textContent));
 });
 
 /*
