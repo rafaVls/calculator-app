@@ -49,10 +49,10 @@ class ButtonClickHandler {
                 this.dotHandler(bigText);
                 break;
             case "+":
-                this.plusHandler(bigText);
+                this.plusHandler(bigText, true);
                 break;
             case "-":
-                this.minusHandler(bigText);
+                this.minusHandler(bigText, true);
                 break;
             case "x":
                 break;
@@ -74,9 +74,9 @@ class ButtonClickHandler {
         }
     }
 
-    plusHandler(bigText) {
+    plusHandler(bigText, addSign = false) {
         if (bigText !== "0" && bigText !== "0.") {
-            smallTextElement.textContent += `${bigTextElement.textContent} + `;
+            addSign && (smallTextElement.textContent += `${bigTextElement.textContent} + `);
             if (!this.afterEquals || this.operatorPressed) {
                 if (this.operatorPressed === "-") {
                     this.minusHandler(bigText);
@@ -96,9 +96,9 @@ class ButtonClickHandler {
         this.operatorPressed = "+";
     }
 
-    minusHandler(bigText) {
+    minusHandler(bigText, addSign = false) {
         if (bigText !== "0" && bigText !== "0.") {
-            smallTextElement.textContent += `${bigTextElement.textContent} - `;
+            addSign && (smallTextElement.textContent += `${bigTextElement.textContent} - `);
             if (!this.afterEquals || this.operatorPressed) {
                 if (this.operatorPressed === "-") {
                     this.value -= +bigText;
@@ -123,10 +123,10 @@ class ButtonClickHandler {
     equalsHandler() {
         switch (this.operatorPressed) {
             case "+":
-                this.plusHandler(bigTextElement.textContent);
+                this.plusHandler(bigTextElement.textContent, true);
                 break;
             case "-":
-                this.minusHandler(bigTextElement.textContent);
+                this.minusHandler(bigTextElement.textContent, true);
                 break;
             default:
                 break;
