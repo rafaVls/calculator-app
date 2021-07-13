@@ -1,10 +1,16 @@
 import { ButtonClickHandler } from "./modules/buttonHandlers.js";
-import { checkIfNaN } from "./modules/helpers.js";
+import { checkIfNaN, switchTheme } from "./modules/helpers.js";
 
 /*
 ========== [Retrieving HTMLElements & initializing ButtonClickHandler class] ==========
 */
 const clickHandler = new ButtonClickHandler();
+
+const toggleElement = document.getElementById("toggle");
+const toggleContainer = document.getElementById("toggle-container");
+const themeContainer = Array.from(document.getElementById("theme-selectors").children);
+const themeInputs = themeContainer.filter(childElement => childElement.hasAttribute("id"));
+
 const buttonElements = Array.from(document.getElementById("keypad").children);
 const deleteButtonElement = buttonElements.find(button => button.textContent === "DEL");
 const resetButtonElement = buttonElements.find(button => button.textContent === "RESET");
@@ -21,6 +27,9 @@ numberButtonElements.forEach(numberButton => {
 });
 operatorButtonElements.forEach(operatorButton => {
     operatorButton.addEventListener("click", () => clickHandler.operatorsHandler(operatorButton.textContent));
+});
+themeInputs.forEach(input => {
+    input.addEventListener("change", () => switchTheme(input.id, toggleElement));
 });
 
 /*
@@ -66,4 +75,27 @@ document.addEventListener("keydown", (e) => {
                 break;
         }
     }
-})
+});
+
+/*
+========== [Handling theme switching] ==========
+*/
+let theme = +toggleElement.classList[1].split("-")[1];
+toggleContainer.addEventListener("click", () => {
+    theme++;
+    switch (theme) {
+        case 2:
+            toggleElement.classList.remove("theme-1");
+            toggleElement.classList.add("theme-2");
+            break;
+        case 3:
+            toggleElement.classList.remove("theme-2");
+            toggleElement.classList.add("theme-3");
+            break;
+        case 4:
+            toggleElement.classList.remove("theme-3");
+            toggleElement.classList.add("theme-1");
+            theme = 1;
+            break;
+    }
+});

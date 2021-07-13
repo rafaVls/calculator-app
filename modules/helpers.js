@@ -25,4 +25,17 @@ function handleSymbol(operationSymbol, smallTextElement, bigTextElement = null) 
     }
 }
 
-export { checkIfNaN, handleSymbol };
+/**
+ * Switch between themes 1, 2 and 3.
+ * @param {string} elementID The id of the input element.
+ * @param {HTMLElement} toggleElement The toggle element with the class attribute.
+ */
+function switchTheme(elementID, toggleElement) {
+    const regExp = /[1-3]+/;
+    const newTheme = `theme-${elementID.match(regExp)[0]}`;
+    const currentTheme = toggleElement.classList[1];
+
+    toggleElement.classList.replace(currentTheme, newTheme);
+}
+
+export { checkIfNaN, handleSymbol, switchTheme };

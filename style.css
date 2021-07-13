@@ -53,11 +53,11 @@ h1 {
 }
 
 legend {
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 label {
-    font-size: .8rem;
+    font-size: 1.2rem;
 }
 
 button {
@@ -98,7 +98,7 @@ button {
 }
 
 .theme-switch input[type="radio"] {
-    display: none;
+    opacity: 0;
 }
 
 .radio-labels {
@@ -108,8 +108,9 @@ button {
 }
 
 .toggle-container {
-    width: 35px;
-    height: 12px;
+    /* position: relative; */
+    width: 55px;
+    height: 14px;
     margin: 2px auto 0;
     padding: 2px;
     display: flex;
@@ -119,10 +120,24 @@ button {
 }
 
 .toggle-circle {
-    width: 8px;
-    height: 8px;
+    /* position: absolute; */
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background-color: var(--bg-key-2);
+    transition: all 200ms linear;
+}
+
+.toggle-circle.theme-1 {
+    transform: translateX(0);
+}
+
+.toggle-circle.theme-2 {
+    transform: translateX(20px);
+}
+
+.toggle-circle.theme-3 {
+    transform: translateX(42px);
 }
 
 /* ==========[ SCREEN SECTION ]========== */
