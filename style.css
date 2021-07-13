@@ -18,6 +18,39 @@
     --text-light: hsl(0, 0%, 100%);
 }
 
+body.theme-2 {
+    --bg-main: hsl(0, 0%, 90%);
+    --bg-keypad: hsl(0, 5%, 81%);
+    --bg-screen: hsl(0, 0%, 93%);
+
+    --bg-key-1: hsl(185, 42%, 37%);
+    --bg-key-2: hsl(185, 58%, 25%);
+    --bg-key-3: hsl(25, 98%, 40%);
+    --bg-key-1-shadow: hsl(25, 99%, 27%);
+    --bg-key-2-shadow:  hsl(45, 7%, 89%);
+    --bg-key-3-shadow: hsl(35, 11%, 61%);
+
+    --text-dark: hsl(60, 10%, 19%);
+    --text-light: hsl(0, 0%, 100%);
+}
+
+body.theme-3 {
+    --bg-main: hsl(268, 75%, 9%);
+    --bg-keypad: hsl(268, 71%, 12%);
+    --bg-screen: var(--bg-keypad);
+
+    --bg-key-1: hsl(281, 89%, 26%);
+    --bg-key-2: hsl(285, 91%, 52%);
+    --bg-key-3: hsl(176, 100%, 44%);
+    --bg-key-1-shadow: hsl(177, 92%, 70%);
+    --bg-key-2-shadow:  hsl(268, 47%, 21%);
+    --bg-key-3-shadow: hsl(290, 70%, 36%);
+
+    --text-dark: hsl(198, 20%, 13%);
+    --text-light: hsl(52, 100%, 62%);
+    --text-white: hsl(0, 0%, 100%);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -108,7 +141,6 @@ button {
 }
 
 .toggle-container {
-    /* position: relative; */
     width: 55px;
     height: 14px;
     margin: 2px auto 0;
@@ -120,12 +152,11 @@ button {
 }
 
 .toggle-circle {
-    /* position: absolute; */
     width: 10px;
     height: 10px;
     border-radius: 50%;
     background-color: var(--bg-key-2);
-    transition: all 200ms linear;
+    transition: transform 200ms linear;
 }
 
 .toggle-circle.theme-1 {
@@ -187,6 +218,55 @@ button {
     color: var(--text-light);
     background-color: var(--bg-key-2);
     box-shadow: 0 5px 0 var(--bg-key-2-shadow);
+}
+
+
+/* ==========[ THEME ADJUSTMENTS ]========== */
+.toggle-circle:not(.theme-1) {
+    background-color: var(--bg-key-3);
+}
+
+body:not(.theme-1) .accent-button {
+    box-shadow: 0 5px 0 var(--bg-key-2);
+}
+
+body:not(.theme-1) .equals-button {
+    background-color: var(--bg-key-3);
+}
+
+body.theme-2 footer {
+    color: var(--text-dark);
+}
+
+body.theme-2 .calculator-container {
+    color: var(--text-dark);
+}
+
+body.theme-2 .screen {
+    color: var(--text-dark);
+}
+
+body.theme-2 .equals-button {
+    box-shadow: 0 5px 0 var(--bg-key-1-shadow);
+}
+
+body.theme-3 footer {
+    color: var(--text-white);
+}
+
+body.theme-3 button {
+    color: var(--text-light);
+    background-color: var(--bg-key-2-shadow);
+}
+
+body.theme-3 .accent-button {
+    color: var(--text-white);
+    background-color: var(--bg-key-1);
+}
+
+body.theme-3 .equals-button {
+    color: var(--text-dark);
+    box-shadow: 0 5px 0 var(--bg-key-1-shadow);
 }
 
 /* Tablets */
