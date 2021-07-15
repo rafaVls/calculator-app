@@ -6,6 +6,7 @@ const smallTextElement = document.getElementById("small-text");
 class ButtonClickHandler {
     constructor() {
         this.value = 0;
+        this.value2 = 0;
         this.afterEquals = false;
         this.operatorPressed = null;
     }
@@ -37,6 +38,7 @@ class ButtonClickHandler {
 
     resetHandler() {
         this.value = 0;
+        this.value2 = 0;
         this.afterEquals = false;
         this.operatorPressed = null;
         bigTextElement.textContent = "0";
@@ -69,7 +71,7 @@ class ButtonClickHandler {
                 this.value = +bigText;
                 break;
         }
-        console.log(this.value);
+        console.log(this.value, this.value2);
     }
 
     dotHandler(bigText) {
@@ -103,7 +105,7 @@ class ButtonClickHandler {
                             break;
                         // these 2 need fixing, it's a thinker
                         case "x":
-                            this.value *= +bigText;
+                            // this.value *= +bigText;
                             break;
                         case "/":
                             this.value /= +bigText;
@@ -112,6 +114,23 @@ class ButtonClickHandler {
                             throw new SyntaxError("Operation type not recognized");
                     }
                 } else {
+                    if (operationSymbol === "x") {
+                        this.value2 = this.value;
+                    } else if ((operationSymbol === "+" || operationSymbol === "-") && this.operatorPressed === "x") {
+                        const mathTerms = smallTextElement.textContent.split(operationSymbol);
+                        const multiplicationTerms = mathTerms[mathTerms.length - 2].split(this.operatorPressed);
+
+                        this.value = 1;
+                        multiplicationTerms.forEach(term => {
+                            this.value *= +term;
+                        });
+
+                        if (operationSymbol === "+") {
+                            this.value = this.value2 + this.value;
+                        } else if (operationSymbol === "-") {
+                            this.value = this.value2 - this.value;
+                        }
+                    }
                     this.operatorsHandler(this.operatorPressed, false);
                 }
             }

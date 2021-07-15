@@ -175,6 +175,7 @@ button {
 .screen {
     display: flex;
     justify-content: space-between;
+    overflow-x: auto;
 
     min-height: 50px;
     padding: 10px;
