@@ -33,7 +33,6 @@ function handleSymbol(operationSymbol, smallTextElement, bigTextElement = null) 
 function switchTheme(elementID, toggleElement) {
     const regExp = /[1-3]+/;
     const newTheme = `theme-${elementID.match(regExp)[0]}`;
-    console.log(newTheme)
     const currentTheme = toggleElement.classList[1];
 
     document.body.classList.replace(currentTheme, newTheme);
