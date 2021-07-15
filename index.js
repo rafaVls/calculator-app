@@ -85,16 +85,16 @@ toggleContainer.addEventListener("click", () => {
     theme++;
     switch (theme) {
         case 2:
-            toggleElement.classList.remove("theme-1");
-            toggleElement.classList.add("theme-2");
+            toggleElement.classList.replace("theme-1", "theme-2");
+            document.body.classList.replace("theme-1", "theme-2");
             break;
         case 3:
-            toggleElement.classList.remove("theme-2");
-            toggleElement.classList.add("theme-3");
+            toggleElement.classList.replace("theme-2", "theme-3");
+            document.body.classList.replace("theme-2", "theme-3");
             break;
         case 4:
-            toggleElement.classList.remove("theme-3");
-            toggleElement.classList.add("theme-1");
+            toggleElement.classList.replace("theme-3", "theme-1");
+            document.body.classList.replace("theme-3", "theme-1");
             theme = 1;
             break;
     }
