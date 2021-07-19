@@ -1,4 +1,4 @@
-import { handleSymbol } from "./helpers.js";
+import { findOperation, handleSymbol } from "./helpers.js";
 
 const bigTextElement = document.getElementById("big-text");
 const smallTextElement = document.getElementById("small-text");
@@ -8,6 +8,7 @@ class ButtonClickHandler {
         this.value = 0;
         this.value2 = 0;
         this.afterEquals = false;
+        this.termOperator = null;
         this.operatorPressed = null;
     }
 
@@ -71,7 +72,6 @@ class ButtonClickHandler {
                 this.value = +bigText;
                 break;
         }
-        console.log(this.value, this.value2);
     }
 
     dotHandler(bigText) {
@@ -116,20 +116,31 @@ class ButtonClickHandler {
                 } else {
                     if (operationSymbol === "x") {
                         this.value2 = this.value;
+                        this.termOperator = this.operatorPressed;
                     } else if ((operationSymbol === "+" || operationSymbol === "-") && this.operatorPressed === "x") {
-                        const mathTerms = smallTextElement.textContent.split(operationSymbol);
-                        const multiplicationTerms = mathTerms[mathTerms.length - 2].split(this.operatorPressed);
-
                         this.value = 1;
-                        multiplicationTerms.forEach(term => {
+                        const mathTerms = smallTextElement.textContent.split(operationSymbol);
+                        let multiplication = mathTerms.find(term => term.includes(this.operatorPressed));
+
+                        if (multiplication.includes("+")) {
+                            multiplication = findOperation(multiplication.split("+"), this.operatorPressed);
+                        } else if (multiplication.includes("-")) {
+                            multiplication = findOperation(multiplication.split("-"), this.operatorPressed);
+                        }
+
+                        multiplication = multiplication.split(this.operatorPressed);
+                        multiplication.forEach(term => {
                             this.value *= +term;
                         });
 
-                        if (operationSymbol === "+") {
+                        //! there's still bugs here
+                        if (this.termOperator === "+") {
                             this.value = this.value2 + this.value;
-                        } else if (operationSymbol === "-") {
+                        } else if (this.termOperator === "-") {
                             this.value = this.value2 - this.value;
                         }
+                    } else {
+                        this.value += +bigText;
                     }
                     this.operatorsHandler(this.operatorPressed, false);
                 }

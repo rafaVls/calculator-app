@@ -7,6 +7,16 @@ function checkIfNaN(possibleNaN) {
 }
 
 /**
+ * Look for and returns the element of the array which contains operationSymbol.
+ * @param {string[]} mathTerms The array of math terms where we want to find the operation.
+ * @param {string} operationSymbol The operation symbol that we're looking for in the array.
+ * @returns String containing operationSymbol.
+ */
+function findOperation(mathTerms, operationSymbol) {
+    return mathTerms.find(term => term.includes(operationSymbol));
+}
+
+/**
  * Handles the symbol of current operation displayed on smallTextelement.
  * @param {string} operationSymbol The symbol string.
  * @param {HTMLElement} smallTextElement The small text part of the screen.
@@ -39,4 +49,4 @@ function switchTheme(elementID, toggleElement) {
     toggleElement.classList.replace(currentTheme, newTheme);
 }
 
-export { checkIfNaN, handleSymbol, switchTheme };
+export { checkIfNaN, findOperation, handleSymbol, switchTheme };
