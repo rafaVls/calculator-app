@@ -5,7 +5,7 @@
   "main": "./dist/server",
   "nodemonConfig": {
     "exec": "npm run start",
-    "watch": ["server/*", "src/*"],
+    "watch": ["server/*", "client/*"],
     "ignore": ["tests/*", "*.test.js"]
   },
   "scripts": {
