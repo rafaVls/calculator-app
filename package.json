@@ -2,10 +2,19 @@
   "name": "calculator-app",
   "version": "1.0.0",
   "description": "This is a solution to the calculator app challenge on Frontend Mentor",
-  "main": "server.js",
+  "main": "./dist/server",
+  "nodemonConfig": {
+    "exec": "npm run start",
+    "watch": ["server/*", "src/*"],
+    "ignore": ["tests/*", "*.test.js"]
+  },
   "scripts": {
-    "start": "node server",
-    "dev": "nodemon server",
+    "start": "npm-run-all build server",
+    "build": "npm-run-all clean transpile",
+    "server": "node ./dist/server",
+    "transpile": "babel ./server --out-dir dist",
+    "clean": "rimraf dist",
+    "dev": "nodemon",
     "test": "jest"
   },
   "repository": {
@@ -30,7 +39,17 @@
     "nodemon": "^2.0.12"
   },
   "dependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.9",
     "dotenv": "^10.0.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }
