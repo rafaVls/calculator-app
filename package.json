@@ -15,7 +15,7 @@
     "transpile": "babel ./server --out-dir dist",
     "clean": "rimraf dist",
     "dev": "nodemon",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
