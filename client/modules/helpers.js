@@ -13,12 +13,16 @@ function checkIfNaN(possibleNaN) {
  * @returns String containing operationSymbol.
  */
 function findOperation(mathTerms, operationSymbol) {
-    return mathTerms.find(term => term.includes(operationSymbol));
+    return mathTerms.find(term => {
+        if (typeof term === "string") {
+            return term.includes(operationSymbol);
+        }
+    });
 }
 
 /**
  * Handles the symbol of current operation displayed on smallTextelement.
- * @param {string} operationSymbol The symbol string.
+ * @param {"+" | "-" | "x" | "/"} operationSymbol The symbol string.
  * @param {HTMLElement} smallTextElement The small text part of the screen.
  * @param {HTMLElement} bigTextElement The big text part of the screen.
  */
@@ -41,12 +45,22 @@ function handleSymbol(operationSymbol, smallTextElement, bigTextElement = null) 
  * @param {HTMLElement} toggleElement The toggle element with the class attribute.
  */
 function switchTheme(elementID, toggleElement) {
-    const regExp = /[1-3]+/;
-    const newTheme = `theme-${elementID.match(regExp)[0]}`;
-    const currentTheme = toggleElement.classList[1];
+    try {
+        const regExp = /[1-3]+/;
+        const newTheme = `theme-${elementID.match(regExp)[0]}`;
+        const currentTheme = toggleElement.classList[1];
 
-    document.body.classList.replace(currentTheme, newTheme);
-    toggleElement.classList.replace(currentTheme, newTheme);
+        document.body.classList.replace(currentTheme, newTheme);
+        toggleElement.classList.replace(currentTheme, newTheme);
+    } catch (e) {
+        if (e instanceof TypeError) {
+            if (e.message.includes("match")) {
+                throw new TypeError("elementID must be a string");
+            } else if (e.message.includes("classList")) {
+                throw new TypeError("toggleElement must be an HTMLElement")
+            }
+        }
+    }
 }
 
 export { checkIfNaN, findOperation, handleSymbol, switchTheme };
