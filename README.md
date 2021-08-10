@@ -34,7 +34,7 @@ Users should be able to:
 ### Links
 
 - [Solution](https://www.frontendmentor.io/solutions/math-is-difficult-2VvySWsMx)
-- [Live Site](https://gifted-shaw-56597d.netlify.app/)
+- [Live Site](https://frontend-calculator.herokuapp.com/)
 
 ## My process
 
