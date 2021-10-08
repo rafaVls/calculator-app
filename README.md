@@ -50,8 +50,6 @@ Users should be able to:
 
 Through this project I tried a variety of implementations for the basic functionality of a calculator. What ended up "working" -I say "working" because it is still a WIP- for me was to utilize classes. I come from a C# and Python background, so I felt right at home when it came to implementing classes in Javascript.
 
-To see how you can add code snippets, see below:
-
 ```js
 class ButtonClickHandler {
     constructor() {
