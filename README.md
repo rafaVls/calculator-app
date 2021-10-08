@@ -29,7 +29,7 @@ Users should be able to:
 
 ### Screenshot
 
-![Calculator in its default theme.](./images/screenshot.png)
+![Calculator in its default theme.](./client/images/screenshot.png)
 
 ### Links
 
